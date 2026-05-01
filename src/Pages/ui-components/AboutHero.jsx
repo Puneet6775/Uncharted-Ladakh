@@ -39,8 +39,8 @@ Ride through breathtaking landscapes, discover offbeat destinations, and enjoy a
         <div className="flex-1 w-full">
           <div className="relative w-full aspect-[4/3] overflow-hidden shadow-[0_12px_32px_rgba(40,37,29,0.12)]">
             <img
-              src="https://images.unsplash.com/photo-1548855864-41afc2c5a0f7?auto=format&fit=crop&w=1200&q=80"
-              alt="Motorcycle rider in a high-altitude landscape"
+              src="/Image/Whyus.png"
+              alt="Our team working on a creative project"
               className="w-full h-full object-cover"
               width={720}
               height={540}

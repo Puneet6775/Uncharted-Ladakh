@@ -10,15 +10,15 @@ import Contact from './Pages/Contact/contact'
 import Floatingicon from './Components/Floatingicon'
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 
-const ScrollToTop = () => {
-  const { pathname } = useLocation();
+function ScrollToTop() {
+  const location = useLocation();
 
   useEffect(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
-  }, [pathname]);
+    window.scrollTo({ top: 0, left: 0 });
+  }, [location.pathname]);
 
   return null;
-};
+}
 
 
 
@@ -41,8 +41,6 @@ function App() {
         <Footer />
       </BrowserRouter>
     </>
-
-
   )
 }
 

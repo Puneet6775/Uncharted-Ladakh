@@ -43,9 +43,10 @@ const Footer = () => {
             </div>
 
 
-            <div className='container mx-auto flex flex-col md:px-0 px-4 sm:flex-row sm:items-center justify-between gap-3.5 py-4 border-t border-gray-300'>
+            <div className='container mx-auto flex flex-col md:px-0 px-4 sm:flex-row md:items-start items-center justify-between gap-3.5 py-4 border-t border-gray-300'>
                 <p>&copy; 2023 Uncharted Ladakh. All rights reserved.</p>
-                <p>Designed by <a href="https://www.webnestmedia.in" className='underline' target="_blank" rel="noopener noreferrer">Webnest Media </a></p>
+                <p className='flex gap-1.5 justify-center items-center'>Designed by <a href="https://www.webnestmedia.in" className='underline' target="_blank" rel="noopener noreferrer">
+                <img src="/Image/logo-white.svg" className='w-auto h-7' alt="" /></a></p>
                 <p>
                     Terms of Service | Privacy Policy
                 </p>

@@ -6,7 +6,7 @@ const AltitudeIcon = () => (
 )
 
 const LocationIcon = () => (
-    <img src="/Image/Location.png" alt="Location" className="w-7 h-7" />
+  <img src="/Image/Location.png" alt="Location" className="w-7 h-7" />
 )
 
 const DurationIcon = () => (
@@ -21,16 +21,13 @@ const MealIcon = () => (
   <img src="/Image/Food.png" alt="Meal" className="w-7 h-7" />
 )
 
-const WhatsAppIcon = () => (
-  <img src="/Image/whatsapp.svg" className="w-6 h-6" />
-)
-
 const tours = [
   {
     id: 1,
     title: 'LEH LADAKH ADVENTURE',
     price: '₹15,500/pa',
-    image: 'https://images.unsplash.com/photo-1516569429355-7f8d9c6a8fa8?auto=format&fit=crop&w=1200&q=80',
+    // Motorcyclists celebrating at Pangong Lake, Ladakh — iconic bike adventure shot
+    image: 'https://pplx-res.cloudinary.com/image/upload/pplx_search_images/ca15f85532b0be097a08adcbbe7d6e7132baf4f6.jpg',
     stats: [
       { Icon: AltitudeIcon, value: '18380 ft' },
       { Icon: LocationIcon, value: '986 km' },
@@ -43,7 +40,8 @@ const tours = [
     id: 2,
     title: 'HIMACHAL TREKKING EXPEDITION',
     price: '₹15,500/pa',
-    image: 'https://images.unsplash.com/photo-1516542076529-1ea3854896f5?auto=format&fit=crop&w=1200&q=80',
+    // Group of trekkers in colorful gear ascending a snowy Himalayan slope in Ladakh
+    image: 'https://pplx-res.cloudinary.com/image/upload/pplx_search_images/ee207b58fe212dcc1bb3099773cad0957839d417.jpg',
     stats: [
       { Icon: AltitudeIcon, value: '15000 ft' },
       { Icon: LocationIcon, value: '550 km' },
@@ -82,7 +80,7 @@ const UltimateAdventures = () => {
       </div>
 
       {/* ── Cards Grid — 2 columns ── */}
-      <div className="relative max-w-7xl mx-auto  grid grid-cols-1 sm:grid-cols-2 gap-6">
+      <div className="relative max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-6">
         {tours.map((tour) => (
           <div
             key={tour.id}
@@ -99,13 +97,13 @@ const UltimateAdventures = () => {
                 height={394}
                 loading="lazy"
               />
-              <span className="absolute top-3 right-3 bg-white text-[#1a1a1a] text-xs font-semibold px-3 py-1 ">
+              <span className="absolute top-3 right-3 bg-white text-[#1a1a1a] text-xs font-semibold px-3 py-1">
                 {tour.price}
               </span>
             </div>
 
             {/* Card Body */}
-            <div className="flex flex-col flex-1 px-5 pt-1 pb-5 gap-4 ">
+            <div className="flex flex-col flex-1 px-5 pt-1 pb-5 gap-4">
 
               {/* Title */}
               <h3 className="font-sans text-base sm:text-lg font-normal text-[#1a1a1a] uppercase tracking-wide">
@@ -136,9 +134,8 @@ const UltimateAdventures = () => {
                            transition-all duration-[180ms] ease-out
                            focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--green)]"
               >
-                {/* WhatsApp SVG Icon */}
-               <img src="/Image/whatsapp.svg" alt="WhatsApp" className="w-5 h-5" />
-                Book Via Whatsapp 
+                <img src="/Image/whatsapp.svg" alt="WhatsApp" className="w-5 h-5" />
+                Book Via Whatsapp
               </a>
 
             </div>
@@ -147,10 +144,11 @@ const UltimateAdventures = () => {
       </div>
 
       {/* ── Explore Tours Button ── */}
-       <div className="flex justify-center mt-12">
+      <div className="flex justify-center mt-12">
         <a
-        href="https://wa.me/919541438044"
-    target="_blank"
+          href="https://wa.me/919541438044"
+          target="_blank"
+          rel="noopener noreferrer"
           className="inline-flex items-center justify-center min-h-[44px] px-12.5 py-2.5
                      bg-[var(--green)] hover:bg-[#1b4332] active:bg-[#152f24]
                      text-white text-sm sm:text-base font-normal
@@ -160,7 +158,7 @@ const UltimateAdventures = () => {
         >
           Explore Tours
         </a>
-      </div>  
+      </div>
 
     </section>
   )

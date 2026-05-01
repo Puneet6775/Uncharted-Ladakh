@@ -38,8 +38,8 @@ const WhyChooseUs = () => {
         <div className="flex-1 w-full">
           <div className="relative w-full aspect-[4/3] overflow-hidden shadow-[0_12px_32px_rgba(40,37,29,0.12)]">
             <img
-              src="https://images.unsplash.com/photo-1495344517868-8ebaf0a2044a?auto=format&fit=crop&w=1200&q=80"
-              alt="Riders exploring scenic mountains"
+              src="/Image/Whyus.png"
+              alt="Our team working on a creative project"
               className="w-full h-full object-cover"
               width={720}
               height={540}

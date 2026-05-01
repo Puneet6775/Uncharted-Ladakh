@@ -3,11 +3,12 @@ import React from 'react'
 const tours = [
   {
     id: 1,
-    title: 'LEH LADAKH ADVENTURE', 
+    title: 'LEH LADAKH ADVENTURE',
     price: '₹15,800/pa',
-    image: 'https://images.unsplash.com/photo-1517964603305-14f78a2e5f6f?auto=format&fit=crop&w=1200&q=80',
+    image: 'https://pplx-res.cloudinary.com/image/upload/pplx_search_images/b784add35052af97695163ba1fc4578b881deb91.jpg',
+    bike: 'Royal Enfield Himalayan',
     stats: [
-      { icon: '/Image/World.png',value: '18380 ft' },
+      { icon: '/Image/World.png', value: '18380 ft' },
       { icon: '/Image/Location.png', value: '986 km' },
       { icon: '/Image/Calender.png', value: '5N/6D' },
       { icon: '/Image/Bed.png', value: 'Hotel/ Camp' },
@@ -18,7 +19,8 @@ const tours = [
     id: 2,
     title: 'HIMALAYAN TREKKING EXPEDITION',
     price: '₹15,500/pa',
-    image: 'https://images.unsplash.com/photo-1499933374294-4584851497cc?auto=format&fit=crop&w=1200&q=80',
+    image: '/Image/bike11.png',
+    bike: 'Royal Enfield Himalayan 450',
     stats: [
       { icon: '/Image/World.png', value: '15000 ft' },
       { icon: '/Image/Location.png', value: '120 km' },
@@ -31,7 +33,8 @@ const tours = [
     id: 3,
     title: 'RAJASTHAN DESERT SAFARI',
     price: '₹15,500/pa',
-    image: 'https://images.unsplash.com/photo-1504215680853-026ed2a45def?auto=format&fit=crop&w=1200&q=80',
+    image: '/Image/bike12.png',
+    bike: 'Royal Enfield Classic 350',
     stats: [
       { icon: '/Image/World.png', value: '2000 ft' },
       { icon: '/Image/Location.png', value: '300 km' },
@@ -44,7 +47,8 @@ const tours = [
     id: 4,
     title: 'ANDAMAN ISLAND GETAWAY',
     price: '₹15,500/pa',
-    image: 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80',
+    image: 'https://pplx-res.cloudinary.com/image/upload/pplx_search_images/83f31fe3b6e6cfcc8027a5dc23459d956e1394c6.jpg',
+    bike: 'Royal Enfield Classic 350',
     stats: [
       { icon: '/Image/World.png', value: '0 ft' },
       { icon: '/Image/Location.png', value: '500 km' },
@@ -65,7 +69,7 @@ const CuratedBikeTours = () => {
           Curated <span className="text-[var(--green)] heading">Bike</span> Tours
         </h1>
         <p className="mt-4 text-[#6b7280] text-base sm:text-lg max-w-xl mx-auto leading-relaxed">
-          Not sure where to go? We’ve got you covered with guided and self-guided tours across the most iconic routes in Ladakh.
+          Not sure where to go? We've got you covered with guided and self-guided tours across the most iconic routes in Ladakh.
         </p>
       </div>
 
@@ -81,7 +85,7 @@ const CuratedBikeTours = () => {
             <div className="relative w-full aspect-[4/3]">
               <img
                 src={tour.image}
-                alt={tour.title}
+                alt={`${tour.bike} - ${tour.title}`}
                 className="w-full h-full object-cover"
                 width={400}
                 height={300}
@@ -97,9 +101,14 @@ const CuratedBikeTours = () => {
             <div className="flex flex-col flex-1 p-4 gap-4">
 
               {/* Title */}
-              <h3 className={`text-sm text-[#1a1a1a] tracking-wide uppercase ${tour.id === 1 || tour.id === 2 || tour.id === 3 || tour.id === 4 ? 'font-normal' : 'font-normal'}`}>
+              {/* <h3 className="text-sm text-[#1a1a1a] tracking-wide uppercase font-normal">
                 {tour.title}
-              </h3>
+              </h3> */}
+
+              {/* Bike Model Tag */}
+              <span className="inline-flex items-center self-start text-[10px] font-semibold uppercase tracking-wider text-[var(--green)] bg-green-50 border border-green-200 px-2 py-0.5 rounded-full">
+                {tour.bike}
+              </span>
 
               {/* Stats Icons Row */}
               <div className="grid grid-cols-5 gap-1 text-center">
@@ -129,9 +138,8 @@ const CuratedBikeTours = () => {
                            transition-all duration-[180ms] ease-out
                            focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--green)]"
               >
-                {/* WhatsApp SVG Icon */}
-               <img src="/Image/whatsapp.svg" alt="WhatsApp" className="w-5 h-5" />
-                Book Via Whatsapp 
+                <img src="/Image/whatsapp.svg" alt="WhatsApp" className="w-5 h-5" />
+                Book Via Whatsapp
               </a>
 
             </div>
