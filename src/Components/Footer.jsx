@@ -14,7 +14,7 @@ const Footer = () => {
                     <p>Because your Ladakh journey deserves more than just a rental — it deserves an experience.</p>
 
                     <div className="flex items-start gap-4">
-                        <a href="https://www.instagram.com/unchartedladakh/" target="_blank" rel="noopener noreferrer">
+                        <a href="https://www.instagram.com/uncharted_ladakh?igsh=MWVhcWcxdWw2eDNwag==/" target="_blank" rel="noopener noreferrer">
                             <FaInstagram size={30} />
                         </a>
                         <a href="https://www.facebook.com/unchartedladakh" target="_blank" rel="noopener noreferrer">
