@@ -1,16 +1,15 @@
 import React from 'react'
-import CuratedBikeTours from '../ui-components/CuratedBikeTours'
-import UltimateAdventures from '../ui-components/UltimateAdventure'
 import HolidayPackages from '../ui-components/HolidayPackages'
-import CTASection from '../ui-components/CTASection'
+import LehLadakhGuide from '../ui-components/LehLadakhGuide'
+import Testimonials from '../../Components/Testimonials'
+
 
 const bike = () => {
   return (
     <div className='mt-16'>
-      <CuratedBikeTours />
-        <UltimateAdventures />
+        <LehLadakhGuide />
         <HolidayPackages />
-      <CTASection />
+        <Testimonials />
     </div>
   )
 }

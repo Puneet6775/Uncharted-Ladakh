@@ -9,6 +9,8 @@ import Contact from './Pages/Contact/contact'
 
 import Floatingicon from './Components/Floatingicon'
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import HolidayPackages from './Pages/ui-components/HolidayPackages'
+import TourDetail from './Pages/ui-components/TourDetail'
 
 function ScrollToTop() {
   const location = useLocation();
@@ -37,6 +39,8 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/bikes" element={<Bike />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/"      element={<HolidayPackages />} />
+        <Route path="/:slug" element={<TourDetail />} />
         </Routes>
         <Footer />
       </BrowserRouter>

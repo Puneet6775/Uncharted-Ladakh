@@ -17,22 +17,24 @@
   }
 
   .button-white{
-    @apply inline-flex items-center justify-center min-h-[44px] px-7 py-3
-           bg-white text-black font-medium text-sm sm:text-base
+    @apply inline-flex items-center justify-center min-h-[44px] px-4 sm:px-7 py-2 sm:py-3
+           bg-white text-black font-medium text-xs sm:text-base
            border border-transparent
            hover:bg-[var(--green)] hover:text-white 
            active:bg-[var(--green)] active:translate-y-0
            focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--green)]
            transition-all duration-[180ms] ease-out
+           rounded
   }
   .button-green{
-    @apply inline-flex items-center justify-center min-h-[44px] px-7 py-3
-           bg-[var(--green)] text-[#f9f8f4] font-medium text-sm sm:text-base
+    @apply inline-flex items-center justify-center min-h-[44px] px-4 sm:px-7 py-2 sm:py-3
+           bg-[var(--green)] text-[#f9f8f4] font-medium text-xs sm:text-base
            border border-transparent
            hover:bg-white hover:text-black
            active:bg-[var(--green)] active:translate-y-0
            focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4f98a3]
            transition-all duration-[180ms] ease-out
+           rounded
   }
 }
 
@@ -40,4 +42,16 @@
   font-family: "Saira Stencil One", sans-serif;
   font-weight: 400;
   font-style: normal;
+}
+
+/* Mobile-specific improvements */
+@media (max-width: 640px) {
+  body {
+    font-size: 14px;
+  }
+  
+  /* Ensure touch targets are at least 44px */
+  button, a[href], input, textarea, select {
+    min-height: 44px;
+  }
 }

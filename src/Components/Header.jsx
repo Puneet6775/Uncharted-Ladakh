@@ -1,144 +1,94 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useMatch } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 
-// ─────────────────────────────────────────────
-// Nav links data
-// ─────────────────────────────────────────────
 const NAV_LINKS = [
   { label: "Home",    link: "/" },
   { label: "About",   link: "/about" },
-  { label: "Bikes",   link: "/bikes" },
+  { label: "Tours",   link: "/bikes" },
   { label: "Contact", link: "/contact" },
 ];
 
-// ─────────────────────────────────────────────
-// Logo config
-// ─────────────────────────────────────────────
 const LOGO_CONFIG = {
   light: "/Image/Logohead.svg",
   dark:  "/Image/Logo.svg",
 };
 
-// Overlay exit duration in ms — keep in sync with overlayVariants exit duration
 const OVERLAY_EXIT_DURATION_MS = 700;
 
-// ─────────────────────────────────────────────
-// Animation variants
-// ─────────────────────────────────────────────
 const overlayVariants = {
   hidden: {
     clipPath: "inset(0 0 100% 0)",
-    transition: {
-      duration: 0.55,
-      ease: [0.76, 0, 0.24, 1],
-      when: "afterChildren",
-    },
+    transition: { duration: 0.55, ease: [0.76, 0, 0.24, 1], when: "afterChildren" },
   },
   visible: {
     clipPath: "inset(0 0 0% 0)",
-    transition: {
-      duration: 0.6,
-      ease: [0.76, 0, 0.24, 1],
-      when: "beforeChildren",
-      staggerChildren: 0.07,
-    },
+    transition: { duration: 0.6, ease: [0.76, 0, 0.24, 1], when: "beforeChildren", staggerChildren: 0.07 },
   },
 };
 
 const linkVariants = {
-  hidden: {
-    y: 40,
-    opacity: 0,
-    transition: { duration: 0.3, ease: [0.76, 0, 0.24, 1] },
-  },
-  visible: {
-    y: 0,
-    opacity: 1,
-    transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },
-  },
+  hidden:  { y: 40, opacity: 0, transition: { duration: 0.3, ease: [0.76, 0, 0.24, 1] } },
+  visible: { y: 0,  opacity: 1, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } },
 };
 
 const ctaVariants = {
   hidden:  { y: 20, opacity: 0, transition: { duration: 0.25 } },
-  visible: {
-    y: 0,
-    opacity: 1,
-    transition: { duration: 0.45, ease: [0.16, 1, 0.3, 1], delay: 0.35 },
-  },
+  visible: { y: 0,  opacity: 1, transition: { duration: 0.45, ease: [0.16, 1, 0.3, 1], delay: 0.35 } },
 };
 
 const dotVariants = {
   hidden:  { scale: 0, opacity: 0 },
-  visible: {
-    scale: 1,
-    opacity: 1,
-    transition: { type: "spring", stiffness: 500, damping: 20 },
-  },
+  visible: { scale: 1, opacity: 1, transition: { type: "spring", stiffness: 500, damping: 20 } },
 };
 
-// ─────────────────────────────────────────────
-// Header Component
-// ─────────────────────────────────────────────
 const Header = () => {
-  const [menuOpen, setMenuOpen]     = useState(false);
-  const [scrolled, setScrolled]     = useState(false);
-
-  // ── Delayed visual state — only flips AFTER overlay fully exits ──
-  // This controls the logo and hamburger color on close.
+  const [menuOpen,   setMenuOpen]   = useState(false);
+  const [scrolled,   setScrolled]   = useState(false);
   const [visualOpen, setVisualOpen] = useState(false);
 
   const closeTimerRef = useRef(null);
 
-  const location = useLocation();
-  const isHome   = location.pathname === "/";
+  // ── Hooks — all at top level, unconditionally ──
+  const location   = useLocation();
+  const isTourPage = useMatch("/:slug"); // matches /pangong-lake-bike-escape etc.
 
-  // ── Hamburger color ──
-  // visualOpen stays true until the overlay has fully collapsed,
-  // so the bars remain white during the closing animation.
-  const hamburgerColor = visualOpen ? "#ffffff" : isHome ? "#ffffff" : "#000000";
+  const isHome      = location.pathname === "/";
+  // White header: home page + all tour detail pages
+  const isLightPage = isHome || !!isTourPage;
 
-  // ── Logo ──
-  // Same rule — stays white logo until overlay is fully gone.
-  const activeLogo = (!isHome && !visualOpen) ? LOGO_CONFIG.dark : LOGO_CONFIG.light;
+  // Hamburger + logo stay white on light pages and while overlay is open/closing
+  const hamburgerColor = visualOpen ? "#ffffff" : isLightPage ? "#ffffff" : "#000000";
+  const activeLogo     = (!isLightPage && !visualOpen) ? LOGO_CONFIG.dark : LOGO_CONFIG.light;
 
   const openMenu = () => {
-    // Clear any pending close timer so fast re-open works cleanly
     if (closeTimerRef.current) clearTimeout(closeTimerRef.current);
     setMenuOpen(true);
-    setVisualOpen(true);  // switch to white immediately on open
+    setVisualOpen(true);
   };
 
   const closeMenu = () => {
-    setMenuOpen(false);   // starts the exit animation immediately
-    // Delay the visual flip until the overlay animation finishes
-    closeTimerRef.current = setTimeout(() => {
-      setVisualOpen(false);
-    }, OVERLAY_EXIT_DURATION_MS);
+    setMenuOpen(false);
+    closeTimerRef.current = setTimeout(() => setVisualOpen(false), OVERLAY_EXIT_DURATION_MS);
   };
 
   const toggleMenu = () => (menuOpen ? closeMenu() : openMenu());
 
-  // Cleanup timer on unmount
   useEffect(() => {
-    return () => {
-      if (closeTimerRef.current) clearTimeout(closeTimerRef.current);
-    };
+    return () => { if (closeTimerRef.current) clearTimeout(closeTimerRef.current); };
   }, []);
 
-  // ── Detect scroll ──
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 10);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // ── Close on route change ──
   useEffect(() => {
     closeMenu();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.pathname]);
 
-  // ── Lock body scroll when menu is open ──
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
@@ -152,31 +102,38 @@ const Header = () => {
       <div
         className="flex justify-center w-full fixed top-0 left-0 z-50"
         style={{
-          backgroundColor: scrolled ? "rgba(45, 74, 62, 0.55)" : "transparent",
-          backdropFilter:       scrolled ? "blur(8px)" : "none",
-          WebkitBackdropFilter: scrolled ? "blur(8px)" : "none",
-          borderBottom: scrolled
+          // Tour detail pages: always frosted green background
+          // Home: transparent at top, frosted on scroll
+          // Other pages: transparent at top, frosted on scroll
+          backgroundColor: isTourPage
+            ? "rgba(45, 74, 62, 0.92)"
+            : scrolled
+              ? "rgba(45, 74, 62, 0.55)"
+              : "transparent",
+          backdropFilter:       (scrolled || !!isTourPage) ? "blur(8px)" : "none",
+          WebkitBackdropFilter: (scrolled || !!isTourPage) ? "blur(8px)" : "none",
+          borderBottom: (scrolled || !!isTourPage)
             ? "1px solid rgba(240, 237, 228, 0.08)"
             : "1px solid transparent",
           transition: "background-color 0.5s, border-color 0.5s",
         }}
       >
-        <header className="container mx-auto w-full flex items-center justify-between md:px-0 px-4 py-5">
+        <header className="container mx-auto w-full flex items-center justify-between md:px-0 px-4 py-4 sm:py-5">
 
-          {/* ── Logo — crossfades on swap ── */}
+          {/* Logo */}
           <Link to="/" className="flex items-center gap-2 no-underline" onClick={closeMenu}>
             <motion.img
               key={activeLogo}
               src={activeLogo}
               alt="Uncharted Ladakh Logo"
-              className="w-40 h-auto"
+              className="w-24 sm:w-32 md:w-40 h-auto"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.3 }}
             />
           </Link>
 
-          {/* ── Hamburger / Close button ── */}
+          {/* Hamburger */}
           <button
             onClick={toggleMenu}
             aria-label={menuOpen ? "Close menu" : "Open menu"}
@@ -211,7 +168,7 @@ const Header = () => {
       </div>
 
       {/* ════════════════════════════════════════
-          FULLSCREEN OVERLAY (Framer Motion)
+          FULLSCREEN OVERLAY
       ════════════════════════════════════════ */}
       <AnimatePresence>
         {menuOpen && (
@@ -224,7 +181,6 @@ const Header = () => {
             animate="visible"
             exit="hidden"
           >
-            {/* ── Nav Links ── */}
             <nav className="flex flex-col items-center gap-6">
               {NAV_LINKS.map((item) => {
                 const isActive =
@@ -233,11 +189,7 @@ const Header = () => {
                     : location.pathname.startsWith(item.link);
 
                 return (
-                  <motion.div
-                    key={item.label}
-                    variants={linkVariants}
-                    className="relative"
-                  >
+                  <motion.div key={item.label} variants={linkVariants} className="relative">
                     <Link
                       to={item.link}
                       onClick={closeMenu}
@@ -252,15 +204,10 @@ const Header = () => {
                         textUnderlineOffset: "6px",
                         transition:          "color 200ms ease",
                       }}
-                      onMouseEnter={(e) => {
-                        if (!isActive) e.currentTarget.style.color = "#b3ccbb";
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.color = isActive ? "#b3ccbb" : "#f0ede4";
-                      }}
+                      onMouseEnter={(e) => { if (!isActive) e.currentTarget.style.color = "#b3ccbb"; }}
+                      onMouseLeave={(e) => { e.currentTarget.style.color = isActive ? "#b3ccbb" : "#f0ede4"; }}
                     >
                       {item.label}
-
                       <AnimatePresence>
                         {isActive && (
                           <motion.span
@@ -280,7 +227,7 @@ const Header = () => {
               })}
             </nav>
 
-            {/* ── Bottom CTA ── */}
+            {/* Bottom CTA */}
             <motion.div
               className="absolute bottom-12 flex flex-col items-center gap-4"
               variants={ctaVariants}
@@ -300,7 +247,6 @@ const Header = () => {
                 Book Now
               </a>
             </motion.div>
-
           </motion.div>
         )}
       </AnimatePresence>

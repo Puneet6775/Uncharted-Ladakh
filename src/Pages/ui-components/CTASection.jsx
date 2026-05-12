@@ -18,24 +18,24 @@ const LeafCluster = ({ side = "left" }) => {
   return (
     <>
     <div
-      className="absolute bottom-0 left-0 pointer-events-none"
+      className="absolute bottom-0 left-0 pointer-events-none hidden sm:block"
       style={{  }}
     >
       {/* Leaf 1 — tallest, back */}
       <img
-        src="/Image/l2.svg "className="w-54 h-auto"
+        src="/Image/l2.svg "className="w-32 sm:w-40 md:w-54 h-auto"
       />
 
       
     </div>
 
     <div
-      className="absolute bottom-0 right-0 pointer-events-none"
+      className="absolute bottom-0 right-0 pointer-events-none hidden sm:block"
       style={{  }}
     >
       {/* Leaf 1 — tallest, back */}
       <img
-        src="/Image/l1.svg" className="w-54 h-auto"
+        src="/Image/l1.svg" className="w-32 sm:w-40 md:w-54 h-auto"
       />
 
       
@@ -59,7 +59,7 @@ const CTASection = () => {
           MAIN CONTAINER — forest green outer wrapper
       ══════════════════════════════════════════ */}
       <div
-        className="w-full flex items-center justify-center py-20 sm:py-24 px-4"
+        className="w-full flex items-center justify-center py-12 sm:py-20 md:py-24 px-4"
         style={{ backgroundColor: "#2d4a3e", fontFamily: "'DM Sans', sans-serif" }}
       >
 
@@ -67,7 +67,7 @@ const CTASection = () => {
             INNER CONTAINER — cream card
         ══════════════════════════════════════════ */}
         <div
-          className="relative w-full max-w-5xl rounded-2xl overflow-hidden flex flex-col items-center justify-center text-center px-6 py-16 sm:px-20 sm:py-20 bg-[white]"
+          className="relative w-full max-w-5xl rounded-xl sm:rounded-2xl overflow-hidden flex flex-col items-center justify-center text-center px-4 sm:px-6 md:px-20 py-8 sm:py-16 md:py-20 bg-[white]"
         >
 
           {/* ── Decorative leaf clusters (left & right) ── */}
@@ -76,7 +76,7 @@ const CTASection = () => {
 
           {/* ── Eyebrow text ── */}
           <p
-            className="relative z-10 text-base tracking-wide mb-2"
+            className="relative z-10 text-xs sm:text-base tracking-wide mb-2 sm:mb-3"
             style={{ color: "#5a5248", fontFamily: "'DM Sans', sans-serif" }}
           >
             Begin Your Journey
@@ -84,14 +84,14 @@ const CTASection = () => {
 
           {/* ── Main heading ── */}
           <h2
-            className="heading text-4xl sm:text-[56px] relative z-10 font-normal leading-none tracking-tight mb-6"
+            className="heading text-2xl sm:text-4xl md:text-[56px] relative z-10 font-normal leading-none tracking-tight mb-4 sm:mb-6"
           >
             Book &amp; save
           </h2>
 
           {/* ── Supporting body copy ── */}
           <p
-            className="relative z-10 text-base sm:text-[20px] leading-relaxed mb-10"
+            className="relative z-10 text-xs sm:text-base md:text-[20px] leading-relaxed mb-6 sm:mb-10"
             style={{
               color: "#5a5248",
               fontFamily: "'DM Sans', sans-serif",
@@ -105,7 +105,7 @@ const CTASection = () => {
           <a
               href="https://wa.me/919541438044"
     target="_blank"
-            className="relative z-10 inline-block text-sm font-medium tracking-widest px-12 py-3 rounded-sm transition-all duration-200 ease-out"
+            className="relative z-10 inline-block text-xs sm:text-sm font-medium tracking-widest px-6 sm:px-12 py-2 sm:py-3 rounded-sm transition-all duration-200 ease-out"
             style={{
               backgroundColor: btnHover ? "#1e3329" : "#2d4a3e",
               color: "#f0ede4",
