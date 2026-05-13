@@ -6,7 +6,7 @@ const NAV_LINKS = [
   { label: "Home",    link: "/" },
   { label: "About",   link: "/about" },
   { label: "Tours",   link: "/bikes" },
-  { label: "Contact", link: "/contact" },
+  { label: "Contact", link: "/Contact" },
 ];
 
 const LOGO_CONFIG = {

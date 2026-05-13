@@ -6,7 +6,7 @@ import { IoCallOutline } from "react-icons/io5";
 
 
 
-const contact = () => {
+const Contact = () => {
   return (
     <div className='mt-12 sm:mt-16 flex flex-col gap-8 sm:gap-16 container mx-auto md:px-0 px-4 py-8 sm:py-16'>
         <h1 className='heading text-2xl sm:text-4xl font-bold text-start'>Contact Us</h1>
@@ -49,4 +49,4 @@ href="tel:919541438044" target="_blank" rel="noopener noreferrer">
   )
 }
 
-export default contact
+export default Contact

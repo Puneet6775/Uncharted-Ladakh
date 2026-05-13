@@ -22,7 +22,7 @@ const tours = [
     title: 'HIMALAYAN TREKKING EXPEDITION',
     price: '₹15,500/pa',
     image: '/Image/bike11.png',
-    bike: 'Royal Enfield Himalayan 450',
+    bike: 'Royal Enfield Classic 350',
     stats: [
       { icon: '/Image/World.png', value: '15000 ft' },
       { icon: '/Image/Location.png', value: '120 km' },
@@ -36,7 +36,7 @@ const tours = [
     title: 'RAJASTHAN DESERT SAFARI',
     price: '₹15,500/pa',
     image: '/Image/bike12.png',
-    bike: 'Royal Enfield Classic 350',
+    bike: 'Royal Enfield Himalayan',
     stats: [
       { icon: '/Image/World.png', value: '2000 ft' },
       { icon: '/Image/Location.png', value: '300 km' },

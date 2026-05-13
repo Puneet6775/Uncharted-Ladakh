@@ -5,7 +5,7 @@ import Footer from './Components/Footer'
 import Home from './Pages/Home/home'
 import About from './Pages/About/about'
 import Bike from './Pages/Bikes/bike'
-import Contact from './Pages/Contact/contact'
+import Contact from './Pages/Contact/Contact'
 
 import Floatingicon from './Components/Floatingicon'
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
@@ -38,7 +38,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/bikes" element={<Bike />} />
-          <Route path="/contact" element={<Contact />} />
+          <Route path="/Contact" element={<Contact />} />
           <Route path="/"      element={<HolidayPackages />} />
         <Route path="/:slug" element={<TourDetail />} />
         </Routes>
